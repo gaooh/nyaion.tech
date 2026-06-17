@@ -2,7 +2,7 @@
 
 公開ポータル（リポジトリルートの静的サイト）の About 直下に、**自転車で走った場所を塗り分けた日本地図＋世界地図**の全幅セクションを新設し、暫定の「Data (2024)」ブロックを置き換える。
 
-- 対象サイト: リポジトリルートの `index.html`（公開・`nyaion.tech` / `nyaion-tech.pages.dev`）
+- 対象サイト: リポジトリルートの `index.html`（公開・`nyaion.tech` / `nyaiontech-site.pages.dev`）
 - 関連: [README](../README.md) / [requirements-2026-06](./requirements-2026-06.md)
 - ブレスト経緯: 仮データだった About 右の「Data」を見直し、走破エリアのコロプレス地図に差し替える要望。
 

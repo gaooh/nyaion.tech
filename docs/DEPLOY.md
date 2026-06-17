@@ -3,7 +3,7 @@
 このリポ（`gaooh/nyaion.tech`）の静的ポータルを **公開**サイトとして Cloudflare Pages に配信する手順。
 
 > **社内 `_portal/` とは別物**。
-> - 本サイト = Pages プロジェクト `nyaion-tech`・**Access なしの一般公開**・ドメイン `nyaion.tech`
+> - 本サイト = Pages プロジェクト `nyaiontech-site`・**Access なしの一般公開**・ドメイン `nyaion.tech`
 > - 社内ポータル = Pages プロジェクト `nyaiontech-portal`・**Cloudflare Access 保護の非公開**（別リポ `gaooh/nyaiontech` の `_portal/`）
 > 取り違え・相互リンクしない（要件 [requirements-2026-06.md](./requirements-2026-06.md) §1.4）。
 
@@ -17,40 +17,27 @@
 - 出力ディレクトリ: `/`（リポジトリルート）
 - 本番ブランチ: `main`
 
-push 後、Cloudflare のビルドが緑になったら `https://nyaion.tech/`（および `*.nyaion-tech.pages.dev`）で反映を確認する。
+push 後、Cloudflare のビルドが緑になったら `https://nyaion.tech/`（および `nyaiontech-site.pages.dev`）で反映を確認する。
 
 > 出力ディレクトリが `/` のため、`docs/` やリポメタ（README 等）も公開ドメインから取得可能。公開したくない素材を `docs/` に置かないこと。
 
 ---
 
-## 初回セットアップ（ダッシュボード手動作業）
+## 初回セットアップ（実施済み・2026-06）
 
-### 1. Git 連携プロジェクトを作成
+既存の Pages プロジェクト `nyaiontech-site`（カスタムドメイン `nyaion.tech` を保持）に対し、本リポ `gaooh/nyaion.tech` の **Git 連携を接続**した。新規プロジェクト作成・ドメイン付け替えは不要だった。
 
-1. [Cloudflare dashboard](https://dash.cloudflare.com) → Workers & Pages → **Create** → Pages → **Connect to Git**
-2. リポジトリ `gaooh/nyaion.tech` を選択
-3. 設定:
-   - Project name: `nyaion-tech`
+ダッシュボードでの操作:
+
+1. [Cloudflare dashboard](https://dash.cloudflare.com) → Workers & Pages → `nyaiontech-site` → **Settings** → **Build** / **Git** からリポジトリ `gaooh/nyaion.tech` を接続
+2. ビルド設定:
    - Production branch: `main`
    - Framework preset: None
    - Build command: （空）
    - Build output directory: `/`
-4. **Save and Deploy** → 初回ビルド完了を `*.nyaion-tech.pages.dev` で確認
+3. 接続後、`main` への push でビルド完了を `nyaiontech-site.pages.dev` / `https://nyaion.tech/` で確認
 
-### 2. カスタムドメイン `nyaion.tech` を付け替え
-
-旧サイト（直接アップロード型 `nyaiontech-site`）から本プロジェクトへドメインを移す。
-
-1. 旧 `nyaiontech-site` → Custom domains から `nyaion.tech` を **削除**
-2. 新 `nyaion-tech` → Custom domains → **Set up a custom domain** → `nyaion.tech` を追加
-3. 同アカウントの Zone のため、apex の DNS（CNAME flattening）と SSL 証明書は自動設定される
-4. 数分後に `https://nyaion.tech/` で本サイトと有効な HTTPS を確認
-
-### 3. 旧プロジェクトの整理（任意）
-
-ドメイン移行後、旧 `nyaiontech-site`（直接アップロード型）は削除してよい。
-
-> Cloudflare の制約: 直接アップロード型プロジェクトは Git 連携へ切替不可。このため新規 Git 連携プロジェクト（`nyaion-tech`）を別途作成している。
+> ドメイン `nyaion.tech` は元から `nyaiontech-site` に付与済みのため、DNS・SSL の再設定は不要。
 
 ---
 
@@ -63,7 +50,7 @@ Git 連携が使えない緊急時のみ。フッターの build マーカーに
 ./deploy.sh
 ```
 
-`deploy.sh` は公開アセットだけを一時ステージへコピー（`docs/`・リポメタ・`.wrangler` を除外）し、`wrangler pages deploy . --project-name=nyaion-tech` する。
+`deploy.sh` は公開アセットだけを一時ステージへコピー（`docs/`・リポメタ・`.wrangler` を除外）し、`wrangler pages deploy . --project-name=nyaiontech-site` する。
 
 ---
 

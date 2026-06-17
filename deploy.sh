@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 公開ポータル（nyaion-tech / nyaion.tech）を Cloudflare Pages へ手動デプロイする。
+# 公開ポータル（nyaiontech-site / nyaion.tech）を Cloudflare Pages へ手動デプロイする。
 # 通常は main への push で Git 連携が自動デプロイするため、本スクリプトは緊急時の
 # フォールバック用。デプロイ時のコミットハッシュをフッターの build マーカーに焼き込む。
 # ソースは汚さず、一時ステージにコピーしてから置換・デプロイする。
@@ -26,5 +26,5 @@ rsync -a \
 sed -i '' "s|<span class=\"footer-build\">[^<]*</span>|<span class=\"footer-build\">${HASH}</span>|" "$STAGE/index.html"
 
 cd "$STAGE"
-echo "Deploying nyaion-tech at commit ${HASH}"
-wrangler pages deploy . --project-name=nyaion-tech --commit-dirty=true
+echo "Deploying nyaiontech-site at commit ${HASH}"
+wrangler pages deploy . --project-name=nyaiontech-site --commit-dirty=true
