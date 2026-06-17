@@ -1,0 +1,5 @@
+# Cloudflare Pages のキャッシュ制御。
+# 小規模・頻繁更新サイトのため、ブラウザ/エッジに毎回再検証させる（保存はするが必ず検証=304活用）。
+# これで CSS 変更後に古い styles.css を掴み続ける問題（既定 max-age=14400=4h）を防ぐ。
+/*
+  Cache-Control: no-cache
