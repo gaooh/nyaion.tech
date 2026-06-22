@@ -49,7 +49,8 @@ Git 連携が使えない緊急時のみ。フッターの build マーカーに
 
 ```sh
 # wrangler ログイン済み（アカウント gaooh.dandelion@gmail.com）であること
-./deploy.sh
+mise install
+just deploy
 ```
 
 `deploy.sh` は公開アセットだけを一時ステージへコピー（`docs/`・リポメタ・`.wrangler` を除外）し、`wrangler pages deploy . --project-name=nyaiontech-site` する。
@@ -59,8 +60,9 @@ Git 連携が使えない緊急時のみ。フッターの build マーカーに
 ## ローカルプレビュー
 
 ```sh
-python3 -m http.server 8787
-# → http://localhost:8787/
+mise install
+just preview-auto
+# → 表示された http://127.0.0.1:<port>/ を開く
 ```
 
 ---

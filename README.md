@@ -18,10 +18,13 @@
 ## ローカルプレビュー
 
 ```bash
-# このディレクトリで簡易サーバを起動
-python3 -m http.server 8787
-# → http://localhost:8787/
+mise install
+just setup
+just preview-auto
+# → 表示された http://127.0.0.1:<port>/ を開く
 ```
+
+通常タスクは `just --list` で確認できる。主なタスクは `just preview-auto`（空きポートでローカルプレビュー）、`just check`（静的検証）、`just build`（Build marker 焼き込み）、`just deploy`（Cloudflare Pages 手動 deploy）。
 
 ## 実装メモ（プロトタイプからの差分・意図）
 
