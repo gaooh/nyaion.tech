@@ -67,6 +67,7 @@ check-links:
         Path("legal/index.html"),
         Path("legal/privacy/index.html"),
         Path("legal/terms/index.html"),
+        Path("apps/yoi/index.html"),
     ]
 
     class Parser(HTMLParser):
