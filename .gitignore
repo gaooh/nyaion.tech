@@ -1,3 +1,5 @@
 .DS_Store
 .wrangler/
+.serena/
+.venv/
 node_modules/
